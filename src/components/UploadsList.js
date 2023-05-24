@@ -18,14 +18,23 @@ const UploadsList = ({ medias }) => {
   //     })
   //   } else { }
   // }
-  const deleteVideo = (id) => {
-    axios.delete("https://localhost:4000/delete" + id)
-    .then((r) => {
-      console.log(r)
-    })
-    .catch((e) => {
-      console.log(e)
-    })
+  // const deleteVideo = (name) => {
+  //   axios.delete("https://localhost:4000/delete" + name)
+  //   .then((r) => {
+  //     console.log(r)
+  //   })
+  //   .catch((e) => {
+  //     console.log(e)
+  //   })
+  // }
+  const deleteVideo = async name => {
+    axios.delete(`https://localhost:4000/delete/${name}`)
+      .then((r) => {
+        console.log(r)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
   }
   return (
     <div className="row">
@@ -53,7 +62,7 @@ const UploadsList = ({ medias }) => {
                       })}
                     </td>
                     <td>
-                      <button onClick={() => { deleteVideo(media._id, media.name) }}>DELETE</button>
+                      <button onClick={deleteVideo(media.name)}>DELETE</button>
                     </td>
                   </tr>
                 );
