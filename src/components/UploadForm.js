@@ -8,14 +8,11 @@ const UploadForm = ({ getAllMedias }) => {
 
   const hadleSubmit = (e) => {
     e.preventDefault();
-
     let formdata = new FormData();
     for (let key in videos) {
       formdata.append("videos", videos[key]);
     }
-
     formdata.append("name", name);
-
     axios
       .post(`${BACKEND_URI}/api/v1/media/create`, formdata)
       .then((success) => {
@@ -32,7 +29,7 @@ const UploadForm = ({ getAllMedias }) => {
     <>
       <form onSubmit={hadleSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name</label>  
           <input
             type="text"
             name="name"
@@ -56,9 +53,9 @@ const UploadForm = ({ getAllMedias }) => {
           />
         </div>
 
-        <button type="submit" className="btn btn-primary mt-2">
+        <button type="submit" className="btn btn-primary mt-2" >
           Submit
-        </button>
+        </button >
       </form>
     </>
   );

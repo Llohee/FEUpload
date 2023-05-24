@@ -1,51 +1,21 @@
 import React from "react";
 import { BACKEND_URI } from "../config/constants";
 import axios from "axios";
-
+import App from '../App.js'
 const UploadsList = ({ medias }) => {
-  // const deleteVideo = (id, name) => {
-  //   if (window.confirm(`Are you sure to delete ${name}`)) {
-  //     axios.delete(`${BACKEND_URI}/delete`, {
-  //       crossDomain: true,
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Accept: "application/json",
-  //         "Access-Control-Allow-Origin": "*",
-  //       },
-  //       body: JSON.stringify({
-  //         mediaid: id,
-  //       })
-  //     })
-  //   } else { }
-  // }
-  // const deleteVideo = (name) => {
-  //   axios.delete("https://localhost:4000/delete" + name)
-  //   .then((r) => {
-  //     console.log(r)
-  //   })
-  //   .catch((e) => {
-  //     console.log(e)
-  //   })
-  // }
   const deleteVideo = async name => {
-    axios.delete(`https://localhost:4000/delete/${name}`)
-      .then((r) => {
-        console.log(r)
+    axios.delete(`${BACKEND_URI}/api/v1/media/delete/${name}`)
+      .then((res) => {
+        console.log(res)
       })
-      .catch((e) => {
-        console.log(e)
+      .catch((error) => {
+        console.log(error)
       })
-  }
+  } 
   return (
     <div className="row">
       <div className="col-md-12">
         <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th width="200">Name</th>
-              <th>Videos</th>
-            </tr>
-          </thead>
           <tbody>
             {medias &&
               medias.map((media) => {
@@ -62,7 +32,7 @@ const UploadsList = ({ medias }) => {
                       })}
                     </td>
                     <td>
-                      <button onClick={deleteVideo(media.name)}>DELETE</button>
+                      <button onClick={()=> {deleteVideo(media.name)}}>DELETE</button>
                     </td>
                   </tr>
                 );
