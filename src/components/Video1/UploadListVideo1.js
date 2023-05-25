@@ -10,7 +10,7 @@ const UploadsListVideo1 = ({ video1s }) => {
       })
       .catch((error) => {
         console.log(error)
-        alert(`Không có video`);
+        alert(`Không có video1`);
       })
   } 
   return (

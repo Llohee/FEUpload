@@ -24,6 +24,12 @@ import UploadsListVideo4 from "./components/video4/UploadListVideo4";
 import UploadFormVideo5 from "./components/video5/UploadFormVideo5";
 import UploadsListVideo5 from "./components/video5/UploadListVideo5";
 
+import UploadFormNew1 from "./components/New1/UploadFormNew1";
+import UploadsListNew1 from "./components/New1/UploadsListNew1";
+
+import UploadFormNew2 from "./components/New2/UploadFormNew2";
+import UploadsListNew2 from "./components/New2/UploadsListNew2";
+
 
 const App = () => {
   //GetAllNews
@@ -60,6 +66,44 @@ const App = () => {
       })
       .catch((error) => {
         setCps([]);
+        console.log(error);
+        alert("Error happened!");
+      });
+  };
+  //GetAllNew1
+  const [new1s, setNew1s] = useState([]);
+
+  useEffect(() => {
+    getAllNew1s();
+  }, []);
+
+  const getAllNew1s = () => {
+    axios
+      .get(`${BACKEND_URI}/api/v1/new1/all`)
+      .then((result) => {
+        setNew1s(result.data);
+      })
+      .catch((error) => {
+        setNew1s([]);
+        console.log(error);
+        alert("Error happened!");
+      });
+  };
+  //GetAllNew2
+  const [new2s, setNew2s] = useState([]);
+
+  useEffect(() => {
+    getAllNew2s();
+  }, []);
+
+  const getAllNew2s = () => {
+    axios
+      .get(`${BACKEND_URI}/api/v1/new2/all`)
+      .then((result) => {
+       setNew2s(result.data);
+      })
+      .catch((error) => {
+       setNew2s([]);
         console.log(error);
         alert("Error happened!");
       });
@@ -228,6 +272,75 @@ const App = () => {
           >
             <div className="card-body">
               <UploadsListNewsCP cps={cps} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* New1 */}
+      <div className="row">
+        <div className="title">News1(max 1)</div>
+        <div className="col-md-6">
+          <div
+            className="card"
+            style={{
+              height: "auto",
+              width: "800px",
+              margin: "40px",
+              border: "1px solid black",
+            }}
+          >
+            <div className="card-body">
+              <UploadFormNew1 getAllNew1s={getAllNew1s} />
+            </div>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div
+            className="card"
+            style={{
+              height: "auto",
+              width: "800px",
+              margin: "40px",
+              border: "1px solid black",
+            }}
+          >
+            <div className="card-body">
+              <UploadsListNew1 new1s={new1s} />
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* New2 */}
+      <div className="row">
+        <div className="title">News2 (max 1)</div>
+        <div className="col-md-6">
+          <div
+            className="card"
+            style={{
+              height: "auto",
+              width: "800px",
+              margin: "40px",
+              border: "1px solid black",
+            }}
+          >
+            <div className="card-body">
+              <UploadFormNew2 getAllNew2s={getAllNew2s} />
+            </div>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div
+            className="card"
+            style={{
+              height: "auto",
+              width: "800px",
+              margin: "40px",
+              border: "1px solid black",
+            }}
+          >
+            <div className="card-body">
+              <UploadsListNew2 new2s={new2s} />
             </div>
           </div>
         </div>

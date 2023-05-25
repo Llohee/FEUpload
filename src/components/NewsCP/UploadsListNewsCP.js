@@ -5,12 +5,12 @@ const UploadsListNewsCP = ({ cps }) => {
   const deleteVideo = async name => {
     axios.delete(`${BACKEND_URI}/api/v1/CP/delete/${name}`)
       .then((res) => {
-        alert(`Đã xóa video ${name}`);
+        alert(`Đã xóa video CamPain ${name}`);
         console.log(res)
       })
       .catch((error) => {
         console.log(error)
-        alert(`Không có video`);
+        alert(`Không có video hoặc đã xóa`);
       })
   } 
   return (

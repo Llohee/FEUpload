@@ -5,12 +5,12 @@ const UploadsListNews = ({ medias }) => {
   const deleteVideo = async name => {
     axios.delete(`${BACKEND_URI}/api/v1/media/delete/${name}`)
       .then((res) => {
-        alert(`Đã xóa video ${name}`);
+        alert(`Đã xóa video LookBook ${name}`);
         console.log(res)
       })
       .catch((error) => {
         console.log(error)
-        alert(`Không có video`);
+        alert(`Không có video hoặc đã xóa`);
       })
   } 
   return (
