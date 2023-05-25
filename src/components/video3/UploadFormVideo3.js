@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { BACKEND_URI } from "../config/constants";
+import { BACKEND_URI } from "../../config/constants";
 
-const UploadForm = ({ getAllMedias }) => {
+const UploadFormVideo3 = ({ getAllVideo3s }) => {
   const [name, setName] = useState("");
   const [videos, setVideos] = useState([]);
-
-  const hadleSubmit = (e) => {
+  const hadleSubmitvideo3 = (e) => {
     e.preventDefault();
     let formdata = new FormData();
     for (let key in videos) {
@@ -14,22 +13,22 @@ const UploadForm = ({ getAllMedias }) => {
     }
     formdata.append("name", name);
     axios
-      .post(`${BACKEND_URI}/api/v1/media/create`, formdata)
+      .post(`${BACKEND_URI}/api/v1/video3/create`, formdata)
       .then((success) => {
-        getAllMedias();
-        alert("Submitted successfully");
+        getAllVideo3s();
+        alert("Đã thêm Video3");
       })
       .catch((error) => {
         console.log(error);
-        alert("Error happened!");
+        alert("Thử lại");
       });
   };
 
   return (
     <>
-      <form onSubmit={hadleSubmit}>
+      <form onSubmit={hadleSubmitvideo3}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>  
+          <label htmlFor="name">Name</label>
           <input
             type="text"
             name="name"
@@ -52,7 +51,6 @@ const UploadForm = ({ getAllMedias }) => {
             }}
           />
         </div>
-
         <button type="submit" className="btn btn-primary mt-2" >
           Submit
         </button >
@@ -61,4 +59,4 @@ const UploadForm = ({ getAllMedias }) => {
   );
 };
 
-export default UploadForm;
+export default UploadFormVideo3;

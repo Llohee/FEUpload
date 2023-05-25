@@ -1,15 +1,16 @@
 import React from "react";
-import { BACKEND_URI } from "../config/constants";
+import { BACKEND_URI } from "../../config/constants";
 import axios from "axios";
-import App from '../App.js'
-const UploadsList = ({ medias }) => {
-  const deleteVideo = async name => {
-    axios.delete(`${BACKEND_URI}/api/v1/media/delete/${name}`)
+const UploadsListVideo5 = ({ video5s }) => {
+  const deleteVideo5 = async name => {
+    axios.delete(`${BACKEND_URI}/api/v1/video5/delete/${name}`)
       .then((res) => {
         console.log(res)
+        alert(`Đã xóa video5 ${name}`);
       })
       .catch((error) => {
         console.log(error)
+        alert(`Không có video`);
       })
   } 
   return (
@@ -17,13 +18,13 @@ const UploadsList = ({ medias }) => {
       <div className="col-md-12">
         <table className="table table-bordered">
           <tbody>
-            {medias &&
-              medias.map((media) => {
+            {video5s &&
+              video5s.map((video5) => {
                 return (
                   <tr>
-                    <td>{media.name}</td>
+                    <td>{video5.name}</td>
                     <td>
-                      {media.videos.map((video) => {
+                      {video5.videos.map((video) => {
                         return (
                           <video controls>
                             <source src={`${BACKEND_URI}${video}`} />
@@ -32,7 +33,7 @@ const UploadsList = ({ medias }) => {
                       })}
                     </td>
                     <td>
-                      <button onClick={()=> {deleteVideo(media.name)}}>DELETE</button>
+                      <button onClick={()=> {deleteVideo5(video5.name)}}>DELETE</button>
                     </td>
                   </tr>
                 );
@@ -44,4 +45,4 @@ const UploadsList = ({ medias }) => {
   );
 };
 
-export default UploadsList;
+export default UploadsListVideo5;
